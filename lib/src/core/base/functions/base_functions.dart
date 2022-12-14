@@ -64,3 +64,9 @@ animatedRouting({
         child: child,
       ),
     );
+
+String toShortString(String value, {int countCharacter = 8}) {
+  return value.length > countCharacter
+      ? "${value.substring(0, countCharacter)}.."
+      : value;
+}
