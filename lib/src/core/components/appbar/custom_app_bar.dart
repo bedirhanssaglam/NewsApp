@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:news_app/src/core/base/functions/base_functions.dart';
 import 'package:news_app/src/core/components/textFormField/text_form_field_widget.dart';
 import 'package:news_app/src/core/constants/enums/icon_enums.dart';
+import 'package:news_app/src/core/constants/enums/routes_enums.dart';
 import 'package:news_app/src/core/extensions/string_extensions.dart';
 import 'package:news_app/src/view/searched_news/searched_news_view.dart';
 import 'package:sizer/sizer.dart';
@@ -14,10 +16,12 @@ class CustomAppBar extends AppBar {
   CustomAppBar({
     Key? key,
     this.isHomeView = false,
+    this.onTap,
     this.navigatorState,
   }) : super(key: key);
 
   final bool? isHomeView;
+  final VoidCallback? onTap;
   bool isOpenSearch = false;
 
   late String searchWord;
@@ -44,6 +48,14 @@ class _CustomAppBarState extends State<CustomAppBar>
     return !widget.isOpenSearch
         ? AppBar(
             automaticallyImplyLeading: false,
+            leading: widget.isHomeView!
+                ? IconButton(
+                    onPressed: () {},
+                    icon: SvgPicture.asset("menu".toSvg),
+                  )
+                : platformBackButton(
+                    onPressed: widget.onTap ?? () {},
+                  ),
             centerTitle: true,
             shadowColor: Colors.grey.shade200,
             backgroundColor: Colors.white,
@@ -63,6 +75,7 @@ class _CustomAppBarState extends State<CustomAppBar>
             ],
           )
         : AppBar(
+            automaticallyImplyLeading: false,
             centerTitle: true,
             actions: [
               IconButton(

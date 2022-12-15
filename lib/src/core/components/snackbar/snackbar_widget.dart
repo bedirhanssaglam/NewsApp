@@ -7,10 +7,7 @@ import '../text/custom_text.dart';
 
 ScaffoldFeatureController<SnackBar, SnackBarClosedReason> snackbarWidget(
     BuildContext context,
-    {required String message,
-    int milliseconds = 350,
-    String? label,
-    double? fontSize = 11}) {
+    {required String message}) {
   return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
     content: CustomText(
       message,
@@ -20,17 +17,10 @@ ScaffoldFeatureController<SnackBar, SnackBarClosedReason> snackbarWidget(
         color: AppConstants.instance.wildSand,
       ),
     ),
-    action: SnackBarAction(
-      label: label ?? "",
-      onPressed: () {},
-    ),
     behavior: SnackBarBehavior.floating,
-    duration: Duration(milliseconds: milliseconds),
+    duration: const Duration(milliseconds: 500),
     shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.only(
-        topRight: Radius.circular(8),
-        bottomRight: Radius.circular(8),
-      ),
+      borderRadius: BorderRadius.all(Radius.circular(8)),
     ),
     backgroundColor: AppConstants.instance.carnation,
   ));

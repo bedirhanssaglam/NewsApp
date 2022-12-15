@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:news_app/src/core/constants/enums/routes_enums.dart';
 import 'package:news_app/src/view/details/details_view.dart';
 import 'package:news_app/src/view/home/home_view.dart';
+import 'package:news_app/src/view/sources/sources_view.dart';
 import 'package:news_app/src/view/splash/splash_view.dart';
 
 import '../../base/functions/base_functions.dart';
@@ -53,6 +54,15 @@ class Routes {
               sourceName: state.params['sourceName'] ?? "",
               author: state.params['author'] ?? "",
             ),
+          );
+        },
+      ),
+      GoRoute(
+        path: RouteEnums.sources.routeName,
+        pageBuilder: (context, state) {
+          return animatedRouting(
+            state: state,
+            route: const SourcesView(),
           );
         },
       ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:kartal/kartal.dart';
+import 'package:news_app/src/core/constants/enums/routes_enums.dart';
 import 'package:sizer/sizer.dart';
 
 import 'package:news_app/src/core/components/appbar/custom_app_bar.dart';
@@ -27,7 +29,9 @@ class DetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(),
+      appBar: CustomAppBar(
+        onTap: () => context.go(RouteEnums.home.routeName),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
