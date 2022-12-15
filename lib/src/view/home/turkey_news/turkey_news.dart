@@ -56,10 +56,16 @@ class _TurkeyNewsState extends State<TurkeyNews> {
                   author: item.author ?? "",
                   title: item.title ?? "",
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
                         builder: (context) => DetailsView(
-                            description: item.description ?? "",
-                            imageUrl: item.urlToImage ?? "")));
+                          description: item.description ?? "",
+                          imageUrl: item.urlToImage ?? "",
+                          sourceName: item.source?.name ?? "",
+                          author: item.author ?? "",
+                        ),
+                      ),
+                    );
                   },
                 ),
               );

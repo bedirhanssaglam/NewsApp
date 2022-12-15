@@ -50,6 +50,8 @@ class Routes {
             route: DetailsView(
               description: state.params['description'] ?? "",
               imageUrl: state.params['imageUrl'] ?? "",
+              sourceName: state.params['sourceName'] ?? "",
+              author: state.params['author'] ?? "",
             ),
           );
         },
