@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../core/base/bloc/news_bloc.dart';
 import '../../../core/base/functions/base_functions.dart';
 import '../../../core/base/models/articles_model.dart';
 import '../../../core/init/network/vexana_manager.dart';
-import '../bloc/news_bloc.dart';
-import '../service/news_service.dart';
+import '../../../core/base/services/news_service.dart';
 import '../widgets/news_card.dart';
 
 class USNewsView extends StatefulWidget {

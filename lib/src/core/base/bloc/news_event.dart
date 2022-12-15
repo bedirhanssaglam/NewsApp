@@ -17,3 +17,12 @@ class FetchNewsByCountry extends NewsEvent {
   @override
   List<Object> get props => [country];
 }
+
+class FetchSearchedNews extends NewsEvent {
+  final String searchWord;
+
+  const FetchSearchedNews(this.searchWord);
+
+  @override
+  List<Object> get props => [searchWord];
+}

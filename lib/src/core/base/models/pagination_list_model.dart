@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:news_app/src/core/utils/typedefs.dart';
 import 'package:vexana/vexana.dart';
 
 part 'pagination_list_model.g.dart';
@@ -16,7 +17,7 @@ class PaginationListModel<T extends INetworkModel> extends INetworkModel {
   });
 
   T fromJsonT(Object? json) {
-    return parseModel?.fromJson(json as Map<String, dynamic>);
+    return parseModel?.fromJson(json as JsonMap);
   }
 
   Object? toJsonT(T data) {
@@ -24,12 +25,12 @@ class PaginationListModel<T extends INetworkModel> extends INetworkModel {
   }
 
   @override
-  fromJson(Map<String, dynamic> json) {
+  fromJson(JsonMap json) {
     return _$PaginationListModelFromJson(json, fromJsonT);
   }
 
   @override
-  Map<String, dynamic> toJson() {
+  JsonMap toJson() {
     return _$PaginationListModelToJson(this, toJsonT);
   }
 }

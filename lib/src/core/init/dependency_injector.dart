@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/src/view/home/service/interface_news_service.dart';
+import 'package:news_app/src/core/base/services/interface_news_service.dart';
 import 'package:provider/provider.dart';
 import 'package:vexana/vexana.dart';
 
-import '../../view/home/bloc/news_bloc.dart';
-import '../../view/home/service/news_service.dart';
+import '../base/bloc/news_bloc.dart';
+import '../base/services/news_service.dart';
 import 'network/vexana_manager.dart';
 
 class DependencyInjector {

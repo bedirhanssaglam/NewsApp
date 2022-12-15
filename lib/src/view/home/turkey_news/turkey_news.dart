@@ -6,10 +6,10 @@ import 'package:sizer/sizer.dart';
 
 import 'package:news_app/src/core/base/functions/base_functions.dart';
 import 'package:news_app/src/core/init/network/vexana_manager.dart';
-import 'package:news_app/src/view/home/bloc/news_bloc.dart';
 
+import '../../../core/base/bloc/news_bloc.dart';
 import '../../../core/base/models/articles_model.dart';
-import '../service/news_service.dart';
+import '../../../core/base/services/news_service.dart';
 import '../widgets/news_card.dart';
 
 class TurkeyNews extends StatefulWidget {

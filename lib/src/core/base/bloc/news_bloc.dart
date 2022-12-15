@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:news_app/src/core/base/models/articles_model.dart';
 import 'package:news_app/src/core/base/models/source_model.dart';
-import 'package:news_app/src/view/home/service/interface_news_service.dart';
+import 'package:news_app/src/core/base/services/interface_news_service.dart';
 
 part 'news_event.dart';
 part 'news_state.dart';
@@ -14,6 +14,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
   NewsBloc(this.newsService) : super(NewsInitial()) {
     on<FetchAllSourcesEvent>(_onFetchAllSources);
     on<FetchNewsByCountry>(_onFetchNewsByCountry);
+    on<FetchSearchedNews>(_onFetchSearchedNews);
   }
 
   Future<void> _onFetchAllSources(
@@ -36,6 +37,18 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
       emit(FetchNewsByCountryLoaded(res));
     } catch (e) {
       emit(FetchNewsByCountryError(e.toString()));
+    }
+  }
+
+  Future<void> _onFetchSearchedNews(
+      FetchSearchedNews event, Emitter<NewsState> emit) async {
+    try {
+      emit(FetchSearchedNewsLoading());
+      List<ArticlesModel> res =
+          await newsService.fetchNewsBySearchWord(event.searchWord);
+      emit(FetchSearchedNewsLoaded(res));
+    } catch (e) {
+      emit(FetchSearchedNewsError(e.toString()));
     }
   }
 }

@@ -1,10 +1,10 @@
 import 'package:news_app/src/core/base/models/pagination_list_model.dart';
 import 'package:news_app/src/core/base/models/source_model.dart';
 import 'package:vexana/vexana.dart';
-import '../../../core/base/models/articles_model.dart';
-import '../../../core/base/models/paginated_list_response.dart';
-import '../../../core/constants/app/app_constants.dart';
-import '../../../core/constants/enums/network_enums.dart';
+import '../models/articles_model.dart';
+import '../models/paginated_list_response.dart';
+import '../../constants/app/app_constants.dart';
+import '../../constants/enums/network_enums.dart';
 import 'interface_news_service.dart';
 
 class NewsService extends INewsService {

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../core/base/bloc/news_bloc.dart';
 import '../../../core/base/functions/base_functions.dart';
 import '../../../core/init/network/vexana_manager.dart';
-import '../../home/bloc/news_bloc.dart';
-import '../../home/service/news_service.dart';
+import '../../../core/base/services/news_service.dart';
 import 'other_news_widget.dart';
 
 class OtherNewsList extends StatefulWidget {
