@@ -10,7 +10,7 @@ class AppConstants {
   AppConstants._init();
 
   String appName = "The News";
-  String apiKey = "[YOUR_API_KEY]";
+  String apiKey = "[API_KEY]";
 
   Color mineShaft = const Color(0xFF252525);
   Color bermuda = const Color(0xFF6EDBC9);

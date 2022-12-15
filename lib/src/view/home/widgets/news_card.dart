@@ -9,6 +9,7 @@ import '../../../core/base/functions/base_functions.dart';
 import '../../../core/components/text/custom_text.dart';
 import '../../../core/constants/app/app_constants.dart';
 import '../../../core/constants/enums/icon_enums.dart';
+import 'small_source_card.dart';
 
 class NewsCard extends StatelessWidget {
   const NewsCard({
@@ -28,61 +29,46 @@ class NewsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 16.h,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: AppConstants.instance.wildSand,
-        borderRadius: const BorderRadius.all(Radius.circular(10)),
-      ),
-      child: Row(
-        children: [
-          imageUrl != null || imageUrl != ""
-              ? Image.network(
-                  imageUrl!,
-                  height: 16.h,
-                  width: 30.w,
-                  fit: BoxFit.cover,
-                )
-              : const SizedBox.shrink(),
-          Padding(
-            padding: EdgeInsets.all(3.sp),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  height: 4.h,
-                  width: 25.w,
-                  decoration: BoxDecoration(
-                    color: AppConstants.instance.bermuda,
-                    borderRadius: const BorderRadius.all(Radius.circular(10)),
-                  ),
-                  child: Center(
-                    child: CustomText(
-                      source,
-                      textStyle: context.textTheme.bodyText1?.copyWith(
-                        color: AppConstants.instance.wildSand,
-                      ),
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        height: 16.h,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: AppConstants.instance.wildSand,
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
+        ),
+        child: Row(
+          children: [
+            imageUrl != null || imageUrl != ""
+                ? Image.network(
+                    imageUrl!,
+                    height: 16.h,
+                    width: 30.w,
+                    fit: BoxFit.cover,
+                  )
+                : const SizedBox.shrink(),
+            Padding(
+              padding: EdgeInsets.all(3.sp),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SmallSourceCard(source: source),
+                  CustomText(
+                    toShortString(
+                      "Author : $author",
+                      countCharacter: 25,
                     ),
                   ),
-                ),
-                CustomText(
-                  toShortString(
-                    "Author : $author",
-                    countCharacter: 25,
+                  CustomText(
+                    toShortString(
+                      title,
+                      countCharacter: 24,
+                    ),
+                    textStyle: context.textTheme.headline1,
                   ),
-                ),
-                CustomText(
-                  toShortString(
-                    title,
-                    countCharacter: 24,
-                  ),
-                  textStyle: context.textTheme.headline1,
-                ),
-                2.h.ph,
-                InkWell(
-                  onTap: onTap,
-                  child: Padding(
+                  2.h.ph,
+                  Padding(
                     padding: EdgeInsets.only(left: 40.w),
                     child: Row(
                       children: [
@@ -95,11 +81,11 @@ class NewsCard extends StatelessWidget {
                       ],
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

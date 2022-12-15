@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:news_app/src/view/details/details_view.dart';
 import 'package:sizer/sizer.dart';
 
 import 'package:news_app/src/core/base/functions/base_functions.dart';
@@ -53,7 +55,12 @@ class _TurkeyNewsState extends State<TurkeyNews> {
                   source: item.source?.name ?? "",
                   author: item.author ?? "",
                   title: item.title ?? "",
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => DetailsView(
+                            description: item.description ?? "",
+                            imageUrl: item.urlToImage ?? "")));
+                  },
                 ),
               );
             },
