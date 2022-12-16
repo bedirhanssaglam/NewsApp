@@ -86,6 +86,10 @@ constants: This layer consists of two structures, these structures are app and e
 
 extensions: This layer and the project contain the basic structure, String and int.
 
-init: This layer consists of 4 main structures. These structures are main_build , routes , network and theme.
+init: This layer consists of 5 main structures. These structures are main_build , routes , network, theme and dependency_injector.
+
+mixins: waitForScreen mixin is defined here and later used in NetworkChangeManager.
+
+utils: Typedefs used in the app are filed here.
 
 - view: This layer contains our screens. We can create a folder for each screen and keep a viewModel or model file for this screen, if necessary, in this folder.
