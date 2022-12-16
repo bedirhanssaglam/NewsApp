@@ -8,6 +8,7 @@ import 'package:news_app/src/core/components/appbar/custom_app_bar.dart';
 import 'package:news_app/src/core/components/richText/custom_rich_text.dart';
 import 'package:news_app/src/core/components/scaffold/custom_scaffold.dart';
 import 'package:news_app/src/core/constants/app/app_constants.dart';
+import 'package:news_app/src/core/constants/enums/routes_enums.dart';
 import 'package:news_app/src/core/extensions/num_extensions.dart';
 import 'package:news_app/src/core/init/network/vexana_manager.dart';
 import 'package:sizer/sizer.dart';
@@ -42,7 +43,7 @@ class _SearchedNewsViewState extends State<SearchedNewsView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        onTap: () => GoRouter.of(context).pop(),
+        onTap: () => context.go(RouteEnums.home.routeName),
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 4.w),

@@ -11,7 +11,7 @@ class AppConstants {
   AppConstants._init();
 
   final String appName = "The News";
-  final String apiKey = "[API_KEY]";
+  final String apiKey = "[ENTER_YOUR_API_KEY]";
   final String noImage =
       "https://images.unsplash.com/photo-1547721064-da6cfb341d50";
   final String promotionalTitle =

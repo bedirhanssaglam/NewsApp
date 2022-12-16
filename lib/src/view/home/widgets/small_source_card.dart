@@ -17,7 +17,7 @@ class SmallSourceCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 4.h,
-      width: 25.w,
+      width: 30.w,
       decoration: BoxDecoration(
         color: AppConstants.instance.bermuda,
         borderRadius: const BorderRadius.all(Radius.circular(10)),

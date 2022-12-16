@@ -57,8 +57,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
       FetchNewsBySource event, Emitter<NewsState> emit) async {
     try {
       emit(FetchNewsBySourceLoading());
-      List<ArticlesModel> res =
-          await newsService.fetchNewsBySource(event.source);
+      var res = await newsService.fetchNewsBySource(event.source);
       emit(FetchNewsBySourceLoaded(res));
     } catch (e) {
       emit(FetchNewsBySourceError(e.toString()));

@@ -79,7 +79,7 @@ class _SourcesNewsViewState extends State<SourcesNewsView> {
 
   ListView _buildNewsList(FetchNewsBySourceLoaded state) {
     return ListView.builder(
-      itemCount: 20,
+      itemCount: state.articles.length,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
