@@ -1,0 +1,113 @@
+{
+	"info": {
+		"_postman_id": "97d1c810-5b47-4652-9849-95622d7c2498",
+		"name": "NEWS API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21591828"
+	},
+	"item": [
+		{
+			"name": "GET NEWS (BY COUNTRY)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url_news}}top-headlines?country=tr&apiKey={{apiKey}}",
+					"host": [
+						"{{base_url_news}}top-headlines"
+					],
+					"query": [
+						{
+							"key": "country",
+							"value": "tr"
+						},
+						{
+							"key": "apiKey",
+							"value": "{{apiKey}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET NEWS (BY SEARCH WORD)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url_news}}everything?q=apple&from=2022-12-14&sortBy=popularity&apiKey={{apiKey}}",
+					"host": [
+						"{{base_url_news}}everything"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "apple"
+						},
+						{
+							"key": "from",
+							"value": "2022-12-14"
+						},
+						{
+							"key": "sortBy",
+							"value": "popularity"
+						},
+						{
+							"key": "apiKey",
+							"value": "{{apiKey}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ALL SOURCES",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url_news}}top-headlines/sources?apiKey={{apiKey}}",
+					"host": [
+						"{{base_url_news}}top-headlines"
+					],
+					"path": [
+						"sources"
+					],
+					"query": [
+						{
+							"key": "apiKey",
+							"value": "{{apiKey}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET NEWS (BY SOURCE)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url_news}}top-headlines?sources=bbc-news&apiKey={{apiKey}}",
+					"host": [
+						"{{base_url_news}}top-headlines"
+					],
+					"query": [
+						{
+							"key": "sources",
+							"value": "bbc-news"
+						},
+						{
+							"key": "apiKey",
+							"value": "{{apiKey}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
