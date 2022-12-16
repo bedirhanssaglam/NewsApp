@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:news_app/src/core/constants/enums/routes_enums.dart';
 import 'package:news_app/src/view/details/details_view.dart';
 import 'package:news_app/src/view/home/home_view.dart';
+import 'package:news_app/src/view/intro/intro_view.dart';
 import 'package:news_app/src/view/searched_news/searched_news_view.dart';
 import 'package:news_app/src/view/sources/sources_view.dart';
 import 'package:news_app/src/view/splash/splash_view.dart';
@@ -23,7 +24,7 @@ class Routes {
 
   GoRouter routes = GoRouter(
     navigatorKey: mainNavigatorKey,
-    initialLocation: RouteEnums.home.routeName,
+    initialLocation: RouteEnums.splash.routeName,
     debugLogDiagnostics: true,
     routes: <RouteBase>[
       GoRoute(
@@ -32,6 +33,15 @@ class Routes {
           return animatedRouting(
             state: state,
             route: const SplashView(),
+          );
+        },
+      ),
+      GoRoute(
+        path: RouteEnums.intro.routeName,
+        pageBuilder: (context, state) {
+          return animatedRouting(
+            state: state,
+            route: IntroView(),
           );
         },
       ),

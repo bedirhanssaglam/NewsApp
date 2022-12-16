@@ -7,10 +7,12 @@ class CustomScaffold extends StatefulWidget {
     super.key,
     this.isHomeView = false,
     required this.body,
+    this.isTherePadding = true,
   });
 
   final bool? isHomeView;
   final Widget body;
+  final bool? isTherePadding;
 
   @override
   State<CustomScaffold> createState() => _CustomScaffoldState();
@@ -24,12 +26,14 @@ class _CustomScaffoldState extends State<CustomScaffold> {
       appBar: CustomAppBar(
         isHomeView: widget.isHomeView,
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 4.w),
-          child: widget.body,
-        ),
-      ),
+      body: widget.isTherePadding!
+          ? SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 4.w),
+                child: widget.body,
+              ),
+            )
+          : widget.body,
     );
   }
 }

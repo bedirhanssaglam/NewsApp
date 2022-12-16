@@ -4,6 +4,7 @@ import 'package:news_app/src/core/base/services/interface_news_service.dart';
 import 'package:provider/provider.dart';
 import 'package:vexana/vexana.dart';
 
+import '../../view/intro/provider/current_page_provider.dart';
 import '../base/bloc/news_bloc.dart';
 import '../base/services/news_service.dart';
 import 'network/vexana_manager.dart';
@@ -34,5 +35,8 @@ class DependencyInjector {
         BlocProvider<NewsBloc>(create: (context) => newsBloc),
       ];
 
-  List<ChangeNotifierProvider<ChangeNotifier>> get otherProviders => [];
+  List<ChangeNotifierProvider<ChangeNotifier>> get otherProviders => [
+        ChangeNotifierProvider<CurrentPageProvider>(
+            create: (context) => CurrentPageProvider()),
+      ];
 }

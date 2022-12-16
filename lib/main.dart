@@ -2,6 +2,7 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/src/core/constants/app/app_constants.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import 'src/core/init/dependency_injector.dart';
@@ -15,7 +16,10 @@ void main() {
       providers: DependencyInjector.instance.repositoryProviders,
       child: MultiBlocProvider(
         providers: DependencyInjector.instance.globalBlocProviders,
-        child: const MyApp(),
+        child: MultiProvider(
+          providers: DependencyInjector.instance.otherProviders,
+          child: const MyApp(),
+        ),
       ),
     ),
   );

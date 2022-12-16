@@ -1,5 +1,6 @@
 enum RouteEnums {
   splash('/splash'),
+  intro('/intro'),
   home('/home'),
   sources('/sources'),
   sourcesNews('/sources-news'),
