@@ -17,7 +17,7 @@ class AppConstants {
   final String promotionalTitle =
       "Follow the instant developments in Turkey and the US! Be the first to reach the news of different news sites! Tap to see all sources.";
 
-  List<Map<String, String>> splashData = [
+  final List<Map<String, String>> splashData = [
     {
       "text":
           "A comprehensive news application that brings together all the news you need to know in Turkey and the US during the day.",

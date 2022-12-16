@@ -49,7 +49,7 @@ class TextFormFieldWidget extends StatelessWidget {
         filled: true,
         fillColor: AppConstants.instance.wildSand,
         hoverColor: AppConstants.instance.carnation,
-        contentPadding: EdgeInsets.all(10.sp),
+        contentPadding: EdgeInsets.all(8.sp),
         hintStyle: context.textTheme.subtitle2?.copyWith(
           color: AppConstants.instance.mineShaft.withOpacity(.7),
           fontSize: 12.sp,

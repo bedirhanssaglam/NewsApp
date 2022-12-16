@@ -82,7 +82,7 @@ class _CustomAppBarState extends State<CustomAppBar>
                   }),
             ],
             title: Padding(
-              padding: const EdgeInsets.only(top: 10, right: 10),
+              padding: EdgeInsets.all(12.sp),
               child: Form(
                 key: widget._formKey,
                 child: SizeTransition(

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:bot_toast/bot_toast.dart';
@@ -7,20 +8,24 @@ import 'package:news_app/src/core/constants/app/app_constants.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import 'src/core/base/bloc/bloc_observer/app_bloc_observer.dart';
 import 'src/core/init/dependency_injector.dart';
 import 'src/core/init/main_build/main_build.dart';
 import 'src/core/init/routes/routes.dart';
 import 'src/core/init/theme/theme_data.dart';
 
 void main() {
-  runApp(
-    MultiRepositoryProvider(
-      providers: DependencyInjector.instance.repositoryProviders,
-      child: MultiBlocProvider(
-        providers: DependencyInjector.instance.globalBlocProviders,
-        child: MultiProvider(
-          providers: DependencyInjector.instance.otherProviders,
-          child: const MyApp(),
+  Bloc.observer = AppBlocObserver.instance;
+  runZoned(
+    () => runApp(
+      MultiRepositoryProvider(
+        providers: DependencyInjector.instance.repositoryProviders,
+        child: MultiBlocProvider(
+          providers: DependencyInjector.instance.globalBlocProviders,
+          child: MultiProvider(
+            providers: DependencyInjector.instance.otherProviders,
+            child: const MyApp(),
+          ),
         ),
       ),
     ),
