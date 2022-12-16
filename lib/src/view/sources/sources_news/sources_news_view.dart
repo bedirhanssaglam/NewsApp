@@ -1,50 +1,51 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/src/core/base/bloc/news_bloc.dart';
 import 'package:news_app/src/core/base/functions/base_functions.dart';
 import 'package:news_app/src/core/base/services/news_service.dart';
-import 'package:news_app/src/core/components/scaffold/custom_scaffold.dart';
-import 'package:news_app/src/core/constants/app/app_constants.dart';
+import 'package:news_app/src/core/components/appbar/custom_app_bar.dart';
 import 'package:news_app/src/core/init/network/vexana_manager.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../core/base/models/articles_model.dart';
-import '../details/details_view.dart';
-import '../../core/components/newsCard/news_card.dart';
+import '../../../core/base/bloc/news_bloc.dart';
+import '../../../core/base/models/articles_model.dart';
+import '../../../core/components/newsCard/news_card.dart';
+import '../../../core/constants/app/app_constants.dart';
+import '../../details/details_view.dart';
 
-class SearchedNewsView extends StatefulWidget {
-  const SearchedNewsView({
+class SourcesNewsView extends StatefulWidget {
+  const SourcesNewsView({
     super.key,
-    required this.searchWord,
+    required this.source,
   });
 
-  final String searchWord;
+  final String source;
 
   @override
-  State<SearchedNewsView> createState() => _SearchedNewsViewState();
+  State<SourcesNewsView> createState() => _SourcesNewsViewState();
 }
 
-class _SearchedNewsViewState extends State<SearchedNewsView> {
+class _SourcesNewsViewState extends State<SourcesNewsView> {
   late NewsBloc newsBloc;
 
   @override
   void initState() {
     super.initState();
     newsBloc = NewsBloc(NewsService(VexanaManager.instance.networkManager));
-    newsBloc.add(FetchSearchedNews(widget.searchWord));
+    newsBloc.add(FetchNewsBySource(widget.source));
   }
 
   @override
   Widget build(BuildContext context) {
-    return CustomScaffold(
+    return Scaffold(
+      appBar: CustomAppBar(),
       body: BlocBuilder<NewsBloc, NewsState>(
         bloc: newsBloc,
         builder: (context, state) {
-          if (state is FetchSearchedNewsLoading) {
+          if (state is FetchNewsBySourceLoading) {
             return platformIndicator();
-          } else if (state is FetchSearchedNewsLoaded) {
+          } else if (state is FetchNewsBySourceLoaded) {
             return _buildNewsList(state);
-          } else if (state is FetchSearchedNewsError) {
+          } else if (state is FetchNewsBySourceError) {
             return errorText(state.errorMessage);
           } else {
             return errorText("Something went wrong!");
@@ -54,9 +55,9 @@ class _SearchedNewsViewState extends State<SearchedNewsView> {
     );
   }
 
-  ListView _buildNewsList(FetchSearchedNewsLoaded state) {
+  ListView _buildNewsList(FetchNewsBySourceLoaded state) {
     return ListView.builder(
-      itemCount: state.articles.length,
+      itemCount: 20,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {

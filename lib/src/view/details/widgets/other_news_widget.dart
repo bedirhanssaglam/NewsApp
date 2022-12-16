@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/src/core/base/functions/base_functions.dart';
 import 'package:news_app/src/core/components/text/custom_text.dart';
+import 'package:news_app/src/core/constants/app/app_constants.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../core/base/models/articles_model.dart';
@@ -26,7 +27,7 @@ class OtherNewsWidget extends StatelessWidget {
         child: Column(
           children: [
             Image.network(
-              item.urlToImage ?? "",
+              item.urlToImage ?? AppConstants.instance.noImage,
               height: 15.h,
               fit: BoxFit.fill,
             ),

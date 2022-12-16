@@ -68,3 +68,23 @@ class FetchSearchedNewsError extends NewsState {
   @override
   List<Object> get props => [errorMessage];
 }
+
+class FetchNewsBySourceLoading extends NewsState {}
+
+class FetchNewsBySourceLoaded extends NewsState {
+  final List<ArticlesModel> articles;
+
+  const FetchNewsBySourceLoaded(this.articles);
+
+  @override
+  List<Object> get props => [articles];
+}
+
+class FetchNewsBySourceError extends NewsState {
+  final String errorMessage;
+
+  const FetchNewsBySourceError(this.errorMessage);
+
+  @override
+  List<Object> get props => [errorMessage];
+}

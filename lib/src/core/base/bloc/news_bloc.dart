@@ -15,6 +15,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
     on<FetchAllSourcesEvent>(_onFetchAllSources);
     on<FetchNewsByCountry>(_onFetchNewsByCountry);
     on<FetchSearchedNews>(_onFetchSearchedNews);
+    on<FetchNewsBySource>(_onFetchNewsBySource);
   }
 
   Future<void> _onFetchAllSources(
@@ -49,6 +50,18 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
       emit(FetchSearchedNewsLoaded(res));
     } catch (e) {
       emit(FetchSearchedNewsError(e.toString()));
+    }
+  }
+
+  Future<void> _onFetchNewsBySource(
+      FetchNewsBySource event, Emitter<NewsState> emit) async {
+    try {
+      emit(FetchNewsBySourceLoading());
+      List<ArticlesModel> res =
+          await newsService.fetchNewsBySource(event.source);
+      emit(FetchNewsBySourceLoaded(res));
+    } catch (e) {
+      emit(FetchNewsBySourceError(e.toString()));
     }
   }
 }

@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:news_app/src/core/constants/enums/routes_enums.dart';
 import 'package:news_app/src/view/details/details_view.dart';
 import 'package:news_app/src/view/home/home_view.dart';
+import 'package:news_app/src/view/searched_news/searched_news_view.dart';
 import 'package:news_app/src/view/sources/sources_view.dart';
 import 'package:news_app/src/view/splash/splash_view.dart';
 
@@ -58,6 +59,17 @@ class Routes {
         },
       ),
       GoRoute(
+        path: RouteEnums.searchedNews.routeName,
+        pageBuilder: (context, state) {
+          return animatedRouting(
+            state: state,
+            route: SearchedNewsView(
+              searchWord: state.params['searchWord'] ?? "",
+            ),
+          );
+        },
+      ),
+      GoRoute(
         path: RouteEnums.sources.routeName,
         pageBuilder: (context, state) {
           return animatedRouting(
@@ -66,6 +78,15 @@ class Routes {
           );
         },
       ),
+      // GoRoute(
+      //   path: RouteEnums.sourcesNews.routeName,
+      //   pageBuilder: (context, state) {
+      //     return animatedRouting(
+      //       state: state,
+      //       route: const SourcesNewsView(),
+      //     );
+      //   },
+      // ),
     ],
   );
 }

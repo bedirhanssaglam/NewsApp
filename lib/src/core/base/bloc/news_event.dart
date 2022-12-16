@@ -26,3 +26,12 @@ class FetchSearchedNews extends NewsEvent {
   @override
   List<Object> get props => [searchWord];
 }
+
+class FetchNewsBySource extends NewsEvent {
+  final String source;
+
+  const FetchNewsBySource(this.source);
+
+  @override
+  List<Object> get props => [source];
+}

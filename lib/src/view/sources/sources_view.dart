@@ -6,6 +6,7 @@ import 'package:news_app/src/core/components/appbar/custom_app_bar.dart';
 import 'package:news_app/src/core/components/text/custom_text.dart';
 import 'package:news_app/src/core/constants/enums/routes_enums.dart';
 import 'package:news_app/src/core/extensions/num_extensions.dart';
+import 'package:news_app/src/view/sources/sources_news/sources_news_view.dart';
 import 'package:sizer/sizer.dart';
 import 'package:kartal/kartal.dart';
 
@@ -71,7 +72,15 @@ class _SourcesViewState extends State<SourcesView> {
                         return Padding(
                           padding: EdgeInsets.all(5.sp),
                           child: SourceCard(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => SourcesNewsView(
+                                    source: item.id ?? "",
+                                  ),
+                                ),
+                              );
+                            },
                             name: item.name ?? "",
                             description: item.description ?? "",
                           ),

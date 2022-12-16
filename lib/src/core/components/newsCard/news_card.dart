@@ -5,11 +5,14 @@ import 'package:news_app/src/core/extensions/num_extensions.dart';
 import 'package:news_app/src/core/extensions/string_extensions.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../core/base/functions/base_functions.dart';
-import '../../../core/components/text/custom_text.dart';
-import '../../../core/constants/app/app_constants.dart';
-import '../../../core/constants/enums/icon_enums.dart';
-import 'small_source_card.dart';
+import '../../base/functions/base_functions.dart';
+import '../text/custom_text.dart';
+import '../../constants/app/app_constants.dart';
+import '../../constants/enums/icon_enums.dart';
+import '../../../view/home/widgets/small_source_card.dart';
+
+/// Since this widget is used on almost all pages,
+/// it is defined in the [components] in the [core] layer.
 
 class NewsCard extends StatelessWidget {
   const NewsCard({
@@ -40,14 +43,12 @@ class NewsCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            imageUrl != null || imageUrl != ""
-                ? Image.network(
-                    imageUrl!,
-                    height: 16.h,
-                    width: 30.w,
-                    fit: BoxFit.cover,
-                  )
-                : const SizedBox.shrink(),
+            Image.network(
+              imageUrl ?? AppConstants.instance.noImage,
+              height: 16.h,
+              width: 30.w,
+              fit: BoxFit.cover,
+            ),
             Padding(
               padding: EdgeInsets.all(3.sp),
               child: Column(

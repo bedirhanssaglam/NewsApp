@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
+import 'package:news_app/src/core/constants/app/app_constants.dart';
 import 'package:news_app/src/view/details/details_view.dart';
 import 'package:sizer/sizer.dart';
 
@@ -10,7 +10,7 @@ import 'package:news_app/src/core/init/network/vexana_manager.dart';
 import '../../../core/base/bloc/news_bloc.dart';
 import '../../../core/base/models/articles_model.dart';
 import '../../../core/base/services/news_service.dart';
-import '../widgets/news_card.dart';
+import '../../../core/components/newsCard/news_card.dart';
 
 class TurkeyNews extends StatefulWidget {
   const TurkeyNews({
@@ -42,40 +42,44 @@ class _TurkeyNewsState extends State<TurkeyNews> {
         if (state is FetchNewsByCountryLoading) {
           return platformIndicator();
         } else if (state is FetchNewsByCountryLoaded) {
-          return ListView.builder(
-            itemCount: 20,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) {
-              ArticlesModel item = state.articles[index];
-              return Padding(
-                padding: EdgeInsets.symmetric(vertical: 1.h),
-                child: NewsCard(
-                  imageUrl: item.urlToImage,
-                  source: item.source?.name ?? "",
-                  author: item.author ?? "",
-                  title: item.title ?? "",
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => DetailsView(
-                          description: item.description ?? "",
-                          imageUrl: item.urlToImage ?? "",
-                          sourceName: item.source?.name ?? "",
-                          author: item.author ?? "",
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              );
-            },
-          );
+          return _buildNewsList(state);
         } else if (state is FetchNewsByCountryError) {
           return errorText(state.errorMessage);
         } else {
           return errorText("Bir şeyler ters gitti!");
         }
+      },
+    );
+  }
+
+  ListView _buildNewsList(FetchNewsByCountryLoaded state) {
+    return ListView.builder(
+      itemCount: 20,
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemBuilder: (context, index) {
+        ArticlesModel item = state.articles[index];
+        return Padding(
+          padding: EdgeInsets.symmetric(vertical: 1.h),
+          child: NewsCard(
+            imageUrl: item.urlToImage ?? AppConstants.instance.noImage,
+            source: item.source?.name ?? "",
+            author: item.author ?? "Unknown",
+            title: item.title ?? "",
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => DetailsView(
+                    description: item.description ?? "",
+                    imageUrl: item.urlToImage ?? AppConstants.instance.noImage,
+                    sourceName: item.source?.name ?? "",
+                    author: item.author ?? "Unknown",
+                  ),
+                ),
+              );
+            },
+          ),
+        );
       },
     );
   }

@@ -4,9 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:news_app/src/core/base/functions/base_functions.dart';
 import 'package:news_app/src/core/components/textFormField/text_form_field_widget.dart';
 import 'package:news_app/src/core/constants/enums/icon_enums.dart';
-import 'package:news_app/src/core/constants/enums/routes_enums.dart';
 import 'package:news_app/src/core/extensions/string_extensions.dart';
-import 'package:news_app/src/view/searched_news/searched_news_view.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../constants/app/app_constants.dart';
@@ -51,22 +49,21 @@ class _CustomAppBarState extends State<CustomAppBar>
             leading: widget.isHomeView!
                 ? IconButton(
                     onPressed: () {},
-                    icon: SvgPicture.asset("menu".toSvg),
+                    icon: SvgPicture.asset(IconEnums.menu.iconName.toSvg),
                   )
                 : platformBackButton(
                     onPressed: widget.onTap ?? () {},
                   ),
             centerTitle: true,
-            shadowColor: Colors.grey.shade200,
             backgroundColor: Colors.white,
             title: Image.asset(
               IconEnums.appbar.iconName.toPng,
               height: 6.h,
             ),
-            elevation: 3,
+            elevation: 2,
             actions: [
               IconButton(
-                  icon: SvgPicture.asset('search'.toSvg),
+                  icon: SvgPicture.asset(IconEnums.search.iconName.toSvg),
                   onPressed: () {
                     setState(() {
                       widget.isOpenSearch = !widget.isOpenSearch;
@@ -142,13 +139,7 @@ class _CustomAppBarState extends State<CustomAppBar>
           message: "Type the word you want to search for.",
         );
       } else {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => SearchedNewsView(
-              searchWord: widget.searchWord,
-            ),
-          ),
-        );
+        context.go("/searched-news/${widget.searchWord}");
       }
     });
   }
