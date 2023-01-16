@@ -2,7 +2,9 @@
 
 An application that shows the daily developments in Turkey and the US.
 
-# Application Screenshots
+# Application Video & Screenshots
+
+https://user-images.githubusercontent.com/105479937/212699635-08dca17f-17f0-4f71-862d-112c41a66fb3.mp4
 
 ![NEWS_APP](https://user-images.githubusercontent.com/105479937/208059307-ae5a0624-26ae-43cd-84b4-74ad5d3c2bc7.png)
 
