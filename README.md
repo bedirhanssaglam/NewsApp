@@ -1,4 +1,4 @@
-# The News
+# The News App
 
 An application that shows the daily developments in Turkey and the US.
 
