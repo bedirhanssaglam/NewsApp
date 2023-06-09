@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kartal/kartal.dart';
+import 'package:news_app/src/core/utils/singleton_mixin.dart';
 import 'package:sizer/sizer.dart';
 
 import 'package:news_app/src/core/components/appbar/custom_app_bar.dart';
@@ -8,10 +9,9 @@ import 'package:news_app/src/core/components/text/custom_text.dart';
 import 'package:news_app/src/core/extensions/num_extensions.dart';
 import 'package:news_app/src/view/home/widgets/small_source_card.dart';
 
-import '../../core/base/functions/base_functions.dart';
 import 'widgets/other_news_list.dart';
 
-class DetailsView extends StatelessWidget {
+class DetailsView extends StatelessWidget with SingletonMixin {
   const DetailsView({
     Key? key,
     required this.description,
@@ -52,7 +52,7 @@ class DetailsView extends StatelessWidget {
                     children: [
                       SmallSourceCard(source: sourceName),
                       CustomText(
-                        toShortString(
+                        functions.toShortString(
                           "Author : $author",
                           countCharacter: 25,
                         ),

@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:news_app/src/core/base/bloc/news_bloc.dart';
-import 'package:news_app/src/core/base/functions/base_functions.dart';
 import 'package:news_app/src/core/base/services/news_service.dart';
 import 'package:news_app/src/core/components/appbar/custom_app_bar.dart';
 import 'package:news_app/src/core/components/richText/custom_rich_text.dart';
 import 'package:news_app/src/core/constants/app/app_constants.dart';
 import 'package:news_app/src/core/constants/enums/routes_enums.dart';
 import 'package:news_app/src/core/extensions/num_extensions.dart';
-import 'package:news_app/src/core/init/network/vexana_manager.dart';
+import 'package:news_app/src/core/utils/singleton_mixin.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../core/base/models/articles_model.dart';
@@ -28,13 +27,14 @@ class SearchedNewsView extends StatefulWidget {
   State<SearchedNewsView> createState() => _SearchedNewsViewState();
 }
 
-class _SearchedNewsViewState extends State<SearchedNewsView> {
+class _SearchedNewsViewState extends State<SearchedNewsView>
+    with SingletonMixin {
   late NewsBloc newsBloc;
 
   @override
   void initState() {
     super.initState();
-    newsBloc = NewsBloc(NewsService(VexanaManager.instance.networkManager));
+    newsBloc = NewsBloc(NewsService(vexanaManager.networkManager));
     newsBloc.add(FetchSearchedNews(widget.searchWord));
   }
 
@@ -54,20 +54,20 @@ class _SearchedNewsViewState extends State<SearchedNewsView> {
               CustomRichText(
                 firstText: "News about the ",
                 secondText: "'${widget.searchWord}'",
-                secondTextColor: AppConstants.instance.carnation,
+                secondTextColor: colors.carnation,
               ),
               2.h.ph,
               BlocBuilder<NewsBloc, NewsState>(
                 bloc: newsBloc,
                 builder: (context, state) {
                   if (state is FetchSearchedNewsLoading) {
-                    return platformIndicator();
+                    return functions.platformIndicator();
                   } else if (state is FetchSearchedNewsLoaded) {
                     return _buildNewsList(state);
                   } else if (state is FetchSearchedNewsError) {
-                    return errorText(state.errorMessage);
+                    return functions.errorText(state.errorMessage);
                   } else {
-                    return errorText("Something went wrong!");
+                    return functions.errorText("Something went wrong!");
                   }
                 },
               ),

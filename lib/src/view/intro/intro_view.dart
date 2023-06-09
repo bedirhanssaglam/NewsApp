@@ -6,6 +6,7 @@ import 'package:news_app/src/core/constants/enums/icon_enums.dart';
 import 'package:news_app/src/core/constants/enums/routes_enums.dart';
 import 'package:news_app/src/core/extensions/num_extensions.dart';
 import 'package:news_app/src/core/extensions/string_extensions.dart';
+import 'package:news_app/src/core/utils/singleton_mixin.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
@@ -14,7 +15,7 @@ import '../../core/constants/app/app_constants.dart';
 import 'provider/current_page_provider.dart';
 import 'widgets/intro_header.dart';
 
-class IntroView extends StatelessWidget {
+class IntroView extends StatelessWidget with SingletonMixin {
   IntroView({super.key});
 
   final PageController pageController = PageController(initialPage: 0);
@@ -76,14 +77,14 @@ class IntroView extends StatelessWidget {
                                     "Skip",
                                     textStyle:
                                         context.textTheme.headline1?.copyWith(
-                                      color: AppConstants.instance.carnation,
+                                      color: colors.carnation,
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
                                   SvgPicture.asset(
                                     IconEnums.arrowForward.iconName.toSvg,
                                     height: 18.sp,
-                                    color: AppConstants.instance.carnation,
+                                    color: colors.carnation,
                                   ),
                                 ],
                               ),
@@ -112,8 +113,8 @@ class IntroView extends StatelessWidget {
           : 2.5.w,
       decoration: BoxDecoration(
         color: context.watch<CurrentPageProvider>().currentPage == index
-            ? AppConstants.instance.carnation
-            : AppConstants.instance.mineShaft,
+            ? colors.carnation
+            : colors.mineShaft,
         borderRadius: BorderRadius.circular(3),
       ),
     );

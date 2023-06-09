@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/src/core/base/functions/base_functions.dart';
 import 'package:news_app/src/core/components/text/custom_text.dart';
 import 'package:news_app/src/core/constants/app/app_constants.dart';
+import 'package:news_app/src/core/utils/singleton_mixin.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../core/base/models/articles_model.dart';
 
-class OtherNewsWidget extends StatelessWidget {
+class OtherNewsWidget extends StatelessWidget with SingletonMixin {
   const OtherNewsWidget({
     Key? key,
     required this.item,
@@ -32,7 +32,7 @@ class OtherNewsWidget extends StatelessWidget {
               fit: BoxFit.fill,
             ),
             CustomText(
-              toShortString(
+              functions.toShortString(
                 item.description ?? "",
                 countCharacter: 60,
               ),

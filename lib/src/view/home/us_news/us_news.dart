@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/src/core/constants/app/app_constants.dart';
+import 'package:news_app/src/core/utils/singleton_mixin.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../core/base/bloc/news_bloc.dart';
-import '../../../core/base/functions/base_functions.dart';
 import '../../../core/base/models/articles_model.dart';
 import '../../../core/init/network/vexana_manager.dart';
 import '../../../core/base/services/news_service.dart';
@@ -23,7 +23,7 @@ class USNewsView extends StatefulWidget {
   State<USNewsView> createState() => _USNewsViewState();
 }
 
-class _USNewsViewState extends State<USNewsView> {
+class _USNewsViewState extends State<USNewsView> with SingletonMixin {
   late NewsBloc newsBloc;
 
   @override
@@ -39,13 +39,13 @@ class _USNewsViewState extends State<USNewsView> {
       bloc: newsBloc,
       builder: (context, state) {
         if (state is FetchNewsByCountryLoading) {
-          return platformIndicator();
+          return functions.platformIndicator();
         } else if (state is FetchNewsByCountryLoaded) {
           return _buildNewsList(state);
         } else if (state is FetchNewsByCountryError) {
-          return errorText(state.errorMessage);
+          return functions.errorText(state.errorMessage);
         } else {
-          return errorText("Something went wrong!");
+          return functions.errorText("Something went wrong!");
         }
       },
     );

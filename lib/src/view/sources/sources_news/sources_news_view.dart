@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:news_app/src/core/base/functions/base_functions.dart';
 import 'package:news_app/src/core/base/services/news_service.dart';
 import 'package:news_app/src/core/components/appbar/custom_app_bar.dart';
 import 'package:news_app/src/core/components/richText/custom_rich_text.dart';
 import 'package:news_app/src/core/extensions/num_extensions.dart';
 import 'package:news_app/src/core/init/network/vexana_manager.dart';
+import 'package:news_app/src/core/utils/singleton_mixin.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../core/base/bloc/news_bloc.dart';
@@ -27,7 +27,7 @@ class SourcesNewsView extends StatefulWidget {
   State<SourcesNewsView> createState() => _SourcesNewsViewState();
 }
 
-class _SourcesNewsViewState extends State<SourcesNewsView> {
+class _SourcesNewsViewState extends State<SourcesNewsView> with SingletonMixin {
   late NewsBloc newsBloc;
 
   @override
@@ -53,20 +53,20 @@ class _SourcesNewsViewState extends State<SourcesNewsView> {
               CustomRichText(
                 firstText: "News from ",
                 secondText: widget.source,
-                secondTextColor: AppConstants.instance.bermuda,
+                secondTextColor: colors.bermuda,
                 textDecoration: TextDecoration.underline,
               ),
               BlocBuilder<NewsBloc, NewsState>(
                 bloc: newsBloc,
                 builder: (context, state) {
                   if (state is FetchNewsBySourceLoading) {
-                    return platformIndicator();
+                    return functions.platformIndicator();
                   } else if (state is FetchNewsBySourceLoaded) {
                     return _buildNewsList(state);
                   } else if (state is FetchNewsBySourceError) {
-                    return errorText(state.errorMessage);
+                    return functions.errorText(state.errorMessage);
                   } else {
-                    return errorText("Something went wrong!");
+                    return functions.errorText("Something went wrong!");
                   }
                 },
               ),
