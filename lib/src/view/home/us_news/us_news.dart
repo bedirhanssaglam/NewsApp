@@ -45,7 +45,7 @@ class _USNewsViewState extends State<USNewsView> with SingletonMixin {
         } else if (state is FetchNewsByCountryError) {
           return functions.errorText(state.errorMessage);
         } else {
-          return functions.errorText("Something went wrong!");
+          return functions.errorText(constants.errorMessage);
         }
       },
     );
@@ -63,7 +63,7 @@ class _USNewsViewState extends State<USNewsView> with SingletonMixin {
           child: NewsCard(
             imageUrl: item.urlToImage ?? AppConstants.instance.noImage,
             source: item.source?.name ?? "",
-            author: item.author ?? "Unknown",
+            author: item.author ?? constants.unknown,
             title: item.title ?? "",
             onTap: () {
               Navigator.of(context).push(
@@ -72,7 +72,7 @@ class _USNewsViewState extends State<USNewsView> with SingletonMixin {
                     description: item.description ?? "",
                     imageUrl: item.urlToImage ?? AppConstants.instance.noImage,
                     sourceName: item.source?.name ?? "",
-                    author: item.author ?? "Unknown",
+                    author: item.author ?? constants.unknown,
                   ),
                 ),
               );

@@ -4,7 +4,7 @@ import 'package:vexana/vexana.dart';
 import '../models/articles_model.dart';
 import '../models/paginated_list_response.dart';
 import '../../constants/app/app_constants.dart';
-import '../../constants/enums/network_enums.dart';
+import '../../constants/enums/app_enums.dart';
 import 'interface_news_service.dart';
 
 class NewsService extends INewsService {

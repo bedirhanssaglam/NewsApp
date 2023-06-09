@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/src/core/constants/app/app_constants.dart';
 import 'package:news_app/src/core/utils/singleton_mixin.dart';
 import 'package:news_app/src/view/details/details_view.dart';
 import 'package:sizer/sizer.dart';
@@ -44,7 +43,7 @@ class _TurkeyNewsState extends State<TurkeyNews> with SingletonMixin {
         } else if (state is FetchNewsByCountryError) {
           return functions.errorText(state.errorMessage);
         } else {
-          return functions.errorText("Bir şeyler ters gitti!");
+          return functions.errorText(constants.errorMessage);
         }
       },
     );
@@ -60,18 +59,18 @@ class _TurkeyNewsState extends State<TurkeyNews> with SingletonMixin {
         return Padding(
           padding: EdgeInsets.symmetric(vertical: 1.h),
           child: NewsCard(
-            imageUrl: item.urlToImage ?? AppConstants.instance.noImage,
+            imageUrl: item.urlToImage ?? constants.noImage,
             source: item.source?.name ?? "",
-            author: item.author ?? "Unknown",
+            author: item.author ?? constants.unknown,
             title: item.title ?? "",
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => DetailsView(
                     description: item.description ?? "",
-                    imageUrl: item.urlToImage ?? AppConstants.instance.noImage,
+                    imageUrl: item.urlToImage ?? constants.noImage,
                     sourceName: item.source?.name ?? "",
-                    author: item.author ?? "Unknown",
+                    author: item.author ?? constants.unknown,
                   ),
                 ),
               );

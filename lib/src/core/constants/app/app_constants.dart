@@ -15,6 +15,11 @@ class AppConstants {
       "https://images.unsplash.com/photo-1547721064-da6cfb341d50";
   final String promotionalTitle =
       "Follow the instant developments in Turkey and the US! Be the first to reach the news of different news sites! Tap to see all sources.";
+  final String errorMessage = "Something went wrong!";
+  final String unknown = "Unknown";
+  final String turkeyNews = "Turkey News";
+  final String usNews = "US News";
+  final String searchedText = "News about the";
 
   final List<Map<String, String>> splashData = [
     {

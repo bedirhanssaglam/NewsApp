@@ -52,8 +52,8 @@ class _SearchedNewsViewState extends State<SearchedNewsView>
             children: [
               3.h.ph,
               CustomRichText(
-                firstText: "News about the ",
-                secondText: "'${widget.searchWord}'",
+                firstText: constants.searchedText,
+                secondText: widget.searchWord,
                 secondTextColor: colors.carnation,
               ),
               2.h.ph,
@@ -67,7 +67,7 @@ class _SearchedNewsViewState extends State<SearchedNewsView>
                   } else if (state is FetchSearchedNewsError) {
                     return functions.errorText(state.errorMessage);
                   } else {
-                    return functions.errorText("Something went wrong!");
+                    return functions.errorText(constants.errorMessage);
                   }
                 },
               ),
@@ -90,16 +90,16 @@ class _SearchedNewsViewState extends State<SearchedNewsView>
           child: NewsCard(
             imageUrl: item.urlToImage ?? AppConstants.instance.noImage,
             source: item.source?.name ?? "",
-            author: item.author ?? "Unknown",
+            author: item.author ?? constants.unknown,
             title: item.title ?? "",
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => DetailsView(
                     description: item.description ?? "",
-                    imageUrl: item.urlToImage ?? AppConstants.instance.noImage,
+                    imageUrl: item.urlToImage ?? constants.noImage,
                     sourceName: item.source?.name ?? "",
-                    author: item.author ?? "Unknown",
+                    author: item.author ?? constants.unknown,
                   ),
                 ),
               );

@@ -4,7 +4,9 @@ import 'package:news_app/src/core/components/animated_text/animated_text.dart';
 import 'package:news_app/src/core/components/scaffold/custom_scaffold.dart';
 import 'package:news_app/src/core/components/sliding_switch/sliding_switch.dart';
 import 'package:news_app/src/core/constants/app/app_constants.dart';
+import 'package:news_app/src/core/constants/enums/app_enums.dart';
 import 'package:news_app/src/core/extensions/num_extensions.dart';
+import 'package:news_app/src/core/utils/singleton_mixin.dart';
 import 'package:news_app/src/view/home/turkey_news/turkey_news.dart';
 import 'package:news_app/src/view/home/us_news/us_news.dart';
 import 'package:sizer/sizer.dart';
@@ -19,7 +21,7 @@ class HomeView extends StatefulWidget {
   State<HomeView> createState() => _HomeViewState();
 }
 
-class _HomeViewState extends State<HomeView> {
+class _HomeViewState extends State<HomeView> with SingletonMixin {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
@@ -36,16 +38,11 @@ class _HomeViewState extends State<HomeView> {
               ),
             ),
           ),
-          const SlidingSwitch(
-            "Turkey News",
-            "US News",
-            page1: TurkeyNews(
-              country: "tr",
-            ),
-            page2: USNewsView(
-              country: "us",
-            ),
-            initialIndex: 0,
+          SlidingSwitch(
+            constants.turkeyNews,
+            constants.usNews,
+            page1: TurkeyNews(country: CountryEnums.tr.countryCode),
+            page2: USNewsView(country: CountryEnums.us.countryCode),
           ),
         ],
       ),
