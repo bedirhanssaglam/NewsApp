@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:news_app/src/core/constants/app/color_constants.dart';
 import 'package:sizer/sizer.dart';
-
-import '../../constants/app/app_constants.dart';
 
 class TextThemeLight {
   static TextThemeLight? _instance;
@@ -15,30 +14,30 @@ class TextThemeLight {
 
   final TextStyle headline1 = GoogleFonts.poppins(
     fontSize: 12.sp,
-    color: AppConstants.instance.mineShaft,
+    color: ColorConstants.instance.mineShaft,
     fontWeight: FontWeight.w500,
   );
 
   final TextStyle headline2 = GoogleFonts.poppins(
     fontSize: 14.sp,
-    color: AppConstants.instance.mineShaft,
+    color: ColorConstants.instance.mineShaft,
     fontWeight: FontWeight.w600,
   );
 
   final TextStyle headline3 = GoogleFonts.poppins(
-      fontSize: 16.sp, color: AppConstants.instance.mineShaft);
+      fontSize: 16.sp, color: ColorConstants.instance.mineShaft);
 
   final TextStyle headline4 = GoogleFonts.poppins(
-      fontSize: 19.sp, color: AppConstants.instance.mineShaft);
+      fontSize: 19.sp, color: ColorConstants.instance.mineShaft);
 
   final TextStyle headline5 = GoogleFonts.poppins(
-      fontSize: 22.sp, color: AppConstants.instance.mineShaft);
+      fontSize: 22.sp, color: ColorConstants.instance.mineShaft);
 
   final TextStyle subtitle1 = GoogleFonts.poppins(
-      fontSize: 18.sp, color: AppConstants.instance.mineShaft);
+      fontSize: 18.sp, color: ColorConstants.instance.mineShaft);
 
   final TextStyle subtitle2 = GoogleFonts.poppins(
-      fontSize: 12.sp, color: AppConstants.instance.mineShaft);
+      fontSize: 12.sp, color: ColorConstants.instance.mineShaft);
 
   final TextStyle bodyText1 = GoogleFonts.poppins(
     fontSize: 9.sp,
@@ -48,7 +47,7 @@ class TextThemeLight {
   final TextStyle bodyText2 = GoogleFonts.poppins(
     fontSize: 11.sp,
     fontWeight: FontWeight.w400,
-    color: AppConstants.instance.mineShaft,
+    color: ColorConstants.instance.mineShaft,
   );
 
   final TextStyle button =

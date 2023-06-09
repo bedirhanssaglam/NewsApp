@@ -6,12 +6,10 @@ import 'package:news_app/src/core/components/appbar/custom_app_bar.dart';
 import 'package:news_app/src/core/components/text/custom_text.dart';
 import 'package:news_app/src/core/constants/enums/routes_enums.dart';
 import 'package:news_app/src/core/extensions/num_extensions.dart';
+import 'package:news_app/src/core/utils/singleton_mixin.dart';
 import 'package:news_app/src/view/sources/sources_news/sources_news_view.dart';
 import 'package:sizer/sizer.dart';
 import 'package:kartal/kartal.dart';
-
-import 'package:news_app/src/core/base/functions/base_functions.dart';
-import 'package:news_app/src/core/init/network/vexana_manager.dart';
 
 import '../../core/base/bloc/news_bloc.dart';
 import '../../core/base/services/news_service.dart';
@@ -24,13 +22,13 @@ class SourcesView extends StatefulWidget {
   State<SourcesView> createState() => _SourcesViewState();
 }
 
-class _SourcesViewState extends State<SourcesView> {
+class _SourcesViewState extends State<SourcesView> with SingletonMixin {
   late NewsBloc newsBloc;
 
   @override
   void initState() {
     super.initState();
-    newsBloc = NewsBloc(NewsService(VexanaManager.instance.networkManager));
+    newsBloc = NewsBloc(NewsService(vexanaManager.networkManager));
     newsBloc.add(FetchAllSourcesEvent());
   }
 
@@ -56,7 +54,7 @@ class _SourcesViewState extends State<SourcesView> {
                 bloc: newsBloc,
                 builder: (context, state) {
                   if (state is FetchAllSourcesLoading) {
-                    return platformIndicator();
+                    return functions.platformIndicator();
                   } else if (state is FetchAllSourcesLoaded) {
                     return GridView.builder(
                       itemCount: 26,
@@ -88,9 +86,9 @@ class _SourcesViewState extends State<SourcesView> {
                       },
                     );
                   } else if (state is FetchAllSourcesError) {
-                    return errorText(state.errorMessage);
+                    return functions.errorText(state.errorMessage);
                   } else {
-                    return errorText("Bir şeyler ters gitti!");
+                    return functions.errorText("Bir şeyler ters gitti!");
                   }
                 },
               ),

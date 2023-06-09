@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/src/core/constants/app/app_constants.dart';
+import 'package:news_app/src/core/utils/singleton_mixin.dart';
 import 'package:news_app/src/view/details/details_view.dart';
 import 'package:sizer/sizer.dart';
-
-import 'package:news_app/src/core/base/functions/base_functions.dart';
-import 'package:news_app/src/core/init/network/vexana_manager.dart';
 
 import '../../../core/base/bloc/news_bloc.dart';
 import '../../../core/base/models/articles_model.dart';
@@ -24,13 +22,13 @@ class TurkeyNews extends StatefulWidget {
   State<TurkeyNews> createState() => _TurkeyNewsState();
 }
 
-class _TurkeyNewsState extends State<TurkeyNews> {
+class _TurkeyNewsState extends State<TurkeyNews> with SingletonMixin {
   late NewsBloc newsBloc;
 
   @override
   void initState() {
     super.initState();
-    newsBloc = NewsBloc(NewsService(VexanaManager.instance.networkManager));
+    newsBloc = NewsBloc(NewsService(vexanaManager.networkManager));
     newsBloc.add(FetchNewsByCountry(widget.country));
   }
 
@@ -40,13 +38,13 @@ class _TurkeyNewsState extends State<TurkeyNews> {
       bloc: newsBloc,
       builder: (context, state) {
         if (state is FetchNewsByCountryLoading) {
-          return platformIndicator();
+          return functions.platformIndicator();
         } else if (state is FetchNewsByCountryLoaded) {
           return _buildNewsList(state);
         } else if (state is FetchNewsByCountryError) {
-          return errorText(state.errorMessage);
+          return functions.errorText(state.errorMessage);
         } else {
-          return errorText("Bir şeyler ters gitti!");
+          return functions.errorText("Bir şeyler ters gitti!");
         }
       },
     );

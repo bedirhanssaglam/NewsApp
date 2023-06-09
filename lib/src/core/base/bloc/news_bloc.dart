@@ -22,7 +22,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
       FetchAllSourcesEvent event, Emitter<NewsState> emit) async {
     try {
       emit(FetchAllSourcesLoading());
-      List<SourceModel> res = await newsService.fetchAllSources();
+      final List<SourceModel> res = await newsService.fetchAllSources();
       emit(FetchAllSourcesLoaded(res));
     } catch (e) {
       emit(FetchAllSourcesError(e.toString()));
@@ -33,7 +33,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
       FetchNewsByCountry event, Emitter<NewsState> emit) async {
     try {
       emit(FetchNewsByCountryLoading());
-      List<ArticlesModel> res =
+      final List<ArticlesModel> res =
           await newsService.fetchNewsByCountry(event.country);
       emit(FetchNewsByCountryLoaded(res));
     } catch (e) {
@@ -45,7 +45,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
       FetchSearchedNews event, Emitter<NewsState> emit) async {
     try {
       emit(FetchSearchedNewsLoading());
-      List<ArticlesModel> res =
+      final List<ArticlesModel> res =
           await newsService.fetchNewsBySearchWord(event.searchWord);
       emit(FetchSearchedNewsLoaded(res));
     } catch (e) {
@@ -57,8 +57,9 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
       FetchNewsBySource event, Emitter<NewsState> emit) async {
     try {
       emit(FetchNewsBySourceLoading());
-      var res = await newsService.fetchNewsBySource(event.source);
-      emit(FetchNewsBySourceLoaded(res));
+      final List<ArticlesModel> news =
+          await newsService.fetchNewsBySource(event.source);
+      emit(FetchNewsBySourceLoaded(news));
     } catch (e) {
       emit(FetchNewsBySourceError(e.toString()));
     }

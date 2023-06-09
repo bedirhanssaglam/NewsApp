@@ -30,7 +30,7 @@ class Routes {
       GoRoute(
         path: RouteEnums.splash.routeName,
         pageBuilder: (context, state) {
-          return animatedRouting(
+          return BaseFunctions.instance.animatedRouting(
             state: state,
             route: const SplashView(),
           );
@@ -39,7 +39,7 @@ class Routes {
       GoRoute(
         path: RouteEnums.intro.routeName,
         pageBuilder: (context, state) {
-          return animatedRouting(
+          return BaseFunctions.instance.animatedRouting(
             state: state,
             route: IntroView(),
           );
@@ -48,7 +48,7 @@ class Routes {
       GoRoute(
         path: RouteEnums.home.routeName,
         pageBuilder: (context, state) {
-          return animatedRouting(
+          return BaseFunctions.instance.animatedRouting(
             state: state,
             route: const HomeView(),
           );
@@ -57,7 +57,7 @@ class Routes {
       GoRoute(
         path: RouteEnums.details.routeName,
         pageBuilder: (context, state) {
-          return animatedRouting(
+          return BaseFunctions.instance.animatedRouting(
             state: state,
             route: DetailsView(
               description: state.params['description'] ?? "",
@@ -71,7 +71,7 @@ class Routes {
       GoRoute(
         path: RouteEnums.searchedNews.routeName,
         pageBuilder: (context, state) {
-          return animatedRouting(
+          return BaseFunctions.instance.animatedRouting(
             state: state,
             route: SearchedNewsView(
               searchWord: state.params['searchWord'] ?? "",
@@ -82,21 +82,12 @@ class Routes {
       GoRoute(
         path: RouteEnums.sources.routeName,
         pageBuilder: (context, state) {
-          return animatedRouting(
+          return BaseFunctions.instance.animatedRouting(
             state: state,
             route: const SourcesView(),
           );
         },
       ),
-      // GoRoute(
-      //   path: RouteEnums.sourcesNews.routeName,
-      //   pageBuilder: (context, state) {
-      //     return animatedRouting(
-      //       state: state,
-      //       route: const SourcesNewsView(),
-      //     );
-      //   },
-      // ),
     ],
   );
 }

@@ -43,9 +43,6 @@ dependencies:
   # Navigation
   go_router: ^5.2.4
 
-  # Localization
-  bot_toast: ^4.0.3
-
   # Json Serializable
   json_serializable: ^6.5.4
   json_annotation: ^4.7.0

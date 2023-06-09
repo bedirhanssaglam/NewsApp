@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/src/core/constants/app/app_constants.dart';
+import 'package:news_app/src/core/utils/singleton_mixin.dart';
 import 'package:news_app/src/core/utils/typedefs.dart';
 import 'package:sizer/sizer.dart';
 
@@ -29,7 +29,7 @@ class SlidingSwitch extends StatefulWidget {
   State<SlidingSwitch> createState() => _SlidingSwitchState();
 }
 
-class _SlidingSwitchState extends State<SlidingSwitch> {
+class _SlidingSwitchState extends State<SlidingSwitch> with SingletonMixin {
   int? _selectedIndex;
 
   int get selectedIndex => _selectedIndex ?? 0;
@@ -64,7 +64,7 @@ class _SlidingSwitchState extends State<SlidingSwitch> {
       margin: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: AppConstants.instance.wildSand,
+        color: colors.wildSand,
       ),
       child: Stack(
         children: [
@@ -80,7 +80,7 @@ class _SlidingSwitchState extends State<SlidingSwitch> {
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: AppConstants.instance.carnation,
+                  color: colors.carnation,
                 ),
               ),
             ),
@@ -101,7 +101,7 @@ class _SlidingSwitchState extends State<SlidingSwitch> {
                         fontSize: 12.sp,
                         color: selectedIndex == 0
                             ? Colors.white
-                            : AppConstants.instance.mineShaft,
+                            : colors.mineShaft,
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -120,7 +120,7 @@ class _SlidingSwitchState extends State<SlidingSwitch> {
                         fontSize: 12.sp,
                         color: selectedIndex == 1
                             ? Colors.white
-                            : AppConstants.instance.mineShaft,
+                            : colors.mineShaft,
                       ),
                       textAlign: TextAlign.center,
                     ),

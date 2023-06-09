@@ -5,7 +5,7 @@ import 'package:news_app/src/core/extensions/num_extensions.dart';
 import 'package:news_app/src/core/extensions/string_extensions.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../base/functions/base_functions.dart';
+import '../../utils/singleton_mixin.dart';
 import '../text/custom_text.dart';
 import '../../constants/app/app_constants.dart';
 import '../../constants/enums/icon_enums.dart';
@@ -14,7 +14,7 @@ import '../../../view/home/widgets/small_source_card.dart';
 /// Since this widget is used on almost all pages,
 /// it is defined in the [components] in the [core] layer.
 
-class NewsCard extends StatelessWidget {
+class NewsCard extends StatelessWidget with SingletonMixin {
   const NewsCard({
     Key? key,
     this.imageUrl,
@@ -38,7 +38,7 @@ class NewsCard extends StatelessWidget {
         height: 16.h,
         width: double.infinity,
         decoration: BoxDecoration(
-          color: AppConstants.instance.wildSand,
+          color: colors.wildSand,
           borderRadius: const BorderRadius.all(Radius.circular(10)),
         ),
         child: Row(
@@ -56,13 +56,13 @@ class NewsCard extends StatelessWidget {
                 children: [
                   SmallSourceCard(source: source),
                   CustomText(
-                    toShortString(
+                    functions.toShortString(
                       "Author : $author",
                       countCharacter: 25,
                     ),
                   ),
                   CustomText(
-                    toShortString(
+                    functions.toShortString(
                       title,
                       countCharacter: 24,
                     ),
@@ -76,7 +76,7 @@ class NewsCard extends StatelessWidget {
                         const CustomText("More..."),
                         SvgPicture.asset(
                           IconEnums.arrowForward.iconName.toSvg,
-                          color: AppConstants.instance.mineShaft,
+                          color: colors.mineShaft,
                           height: 20.sp,
                         ),
                       ],

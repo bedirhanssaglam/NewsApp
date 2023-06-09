@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:news_app/src/core/base/functions/base_functions.dart';
 import 'package:news_app/src/core/components/textFormField/text_form_field_widget.dart';
 import 'package:news_app/src/core/constants/enums/icon_enums.dart';
 import 'package:news_app/src/core/extensions/string_extensions.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../constants/app/app_constants.dart';
+import '../../utils/singleton_mixin.dart';
 import '../snackbar/snackbar_widget.dart';
 
 class CustomAppBar extends AppBar {
@@ -31,7 +30,7 @@ class CustomAppBar extends AppBar {
 }
 
 class _CustomAppBarState extends State<CustomAppBar>
-    with TickerProviderStateMixin {
+    with SingletonMixin, TickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(
     duration: const Duration(seconds: 1),
     vsync: this,
@@ -51,7 +50,7 @@ class _CustomAppBarState extends State<CustomAppBar>
                     onPressed: () {},
                     icon: SvgPicture.asset(IconEnums.menu.iconName.toSvg),
                   )
-                : platformBackButton(
+                : functions.platformBackButton(
                     onPressed: widget.onTap ?? () {},
                   ),
             centerTitle: true,
@@ -110,7 +109,7 @@ class _CustomAppBarState extends State<CustomAppBar>
                               child: Icon(
                                 Icons.close,
                                 size: 30,
-                                color: AppConstants.instance.mineShaft,
+                                color: colors.mineShaft,
                               ),
                             ),
                           )
@@ -119,7 +118,7 @@ class _CustomAppBarState extends State<CustomAppBar>
                             child: Icon(
                               Icons.search,
                               size: 15.sp,
-                              color: AppConstants.instance.mineShaft,
+                              color: colors.mineShaft,
                             ),
                           ),
                   ),
@@ -134,7 +133,7 @@ class _CustomAppBarState extends State<CustomAppBar>
       widget.isOpenSearch = !widget.isOpenSearch;
       widget._formKey.currentState?.save();
       if (widget.searchWord.isEmpty) {
-        snackbarWidget(
+        SnackbarWidget().snackbarWidget(
           context,
           message: "Type the word you want to search for.",
         );

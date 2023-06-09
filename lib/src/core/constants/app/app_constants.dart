@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:news_app/src/core/constants/enums/icon_enums.dart';
 
 class AppConstants {
@@ -34,9 +33,4 @@ class AppConstants {
       "image": IconEnums.introThird.iconName,
     },
   ];
-
-  Color mineShaft = const Color(0xFF252525);
-  Color bermuda = const Color(0xFF6EDBC9);
-  Color wildSand = const Color(0xFFF6F6F6);
-  Color carnation = const Color(0xFFFB5E5D);
 }

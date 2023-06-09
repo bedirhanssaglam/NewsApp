@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
+import 'package:news_app/src/core/utils/singleton_mixin.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../core/components/text/custom_text.dart';
-import '../../../core/constants/app/app_constants.dart';
 
-class SmallSourceCard extends StatelessWidget {
+class SmallSourceCard extends StatelessWidget with SingletonMixin {
   const SmallSourceCard({
     Key? key,
     required this.source,
@@ -19,14 +19,14 @@ class SmallSourceCard extends StatelessWidget {
       height: 4.h,
       width: 30.w,
       decoration: BoxDecoration(
-        color: AppConstants.instance.bermuda,
+        color: colors.bermuda,
         borderRadius: const BorderRadius.all(Radius.circular(10)),
       ),
       child: Center(
         child: CustomText(
           source,
           textStyle: context.textTheme.bodyText1?.copyWith(
-            color: AppConstants.instance.wildSand,
+            color: colors.wildSand,
           ),
         ),
       ),

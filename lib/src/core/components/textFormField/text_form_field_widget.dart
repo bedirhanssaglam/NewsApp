@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kartal/kartal.dart';
+import 'package:news_app/src/core/utils/singleton_mixin.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../constants/app/app_constants.dart';
 import '../../utils/typedefs.dart';
 
-class TextFormFieldWidget extends StatelessWidget {
+class TextFormFieldWidget extends StatelessWidget with SingletonMixin {
   final String? hintText;
   final StringFunction onSaved;
   final TextInputType? textInputType;
@@ -47,11 +47,11 @@ class TextFormFieldWidget extends StatelessWidget {
         hintText: hintText,
         suffixIcon: suffixIcon,
         filled: true,
-        fillColor: AppConstants.instance.wildSand,
-        hoverColor: AppConstants.instance.carnation,
+        fillColor: colors.wildSand,
+        hoverColor: colors.carnation,
         contentPadding: EdgeInsets.all(8.sp),
         hintStyle: context.textTheme.subtitle2?.copyWith(
-          color: AppConstants.instance.mineShaft.withOpacity(.7),
+          color: colors.mineShaft.withOpacity(.7),
           fontSize: 12.sp,
         ),
         border: const OutlineInputBorder(
@@ -68,7 +68,7 @@ class TextFormFieldWidget extends StatelessWidget {
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: const BorderRadius.all(Radius.circular(10)),
-          borderSide: BorderSide(color: AppConstants.instance.carnation),
+          borderSide: BorderSide(color: colors.carnation),
         ),
         disabledBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(10)),

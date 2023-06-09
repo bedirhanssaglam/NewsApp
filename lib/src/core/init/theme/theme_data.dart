@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../constants/app/app_constants.dart';
+import '../../constants/app/color_constants.dart';
 import 'app_theme.dart';
 import 'i_text_theme.dart';
 
@@ -32,32 +32,14 @@ class AppThemeLight extends AppTheme with ITheme {
         appBarTheme: ThemeData.light().appBarTheme.copyWith(
             centerTitle: true,
             titleTextStyle: TextStyle(
-              color: AppConstants.instance.mineShaft,
+              color: ColorConstants.instance.mineShaft,
             ),
             color: Colors.white,
             elevation: 0,
-            iconTheme:
-                IconThemeData(color: AppConstants.instance.mineShaft, size: 21),
+            iconTheme: IconThemeData(
+                color: ColorConstants.instance.mineShaft, size: 21),
             systemOverlayStyle: SystemUiOverlayStyle.dark),
-        inputDecorationTheme: InputDecorationTheme(
-            focusColor: AppConstants.instance.mineShaft,
-            labelStyle: const TextStyle(),
-            contentPadding: EdgeInsets.zero,
-            filled: true,
-            enabledBorder:
-                const OutlineInputBorder(borderSide: BorderSide(width: 0.3)),
-            focusedBorder: const OutlineInputBorder()),
         scaffoldBackgroundColor: Colors.white,
-        floatingActionButtonTheme:
-            ThemeData.light().floatingActionButtonTheme.copyWith(),
-        buttonTheme: ThemeData.light().buttonTheme.copyWith(
-              colorScheme: ColorScheme.light(
-                onError: AppConstants.instance.carnation,
-              ),
-            ),
         backgroundColor: Colors.white,
-        pageTransitionsTheme: const PageTransitionsTheme(builders: {
-          TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
-        }),
       );
 }
